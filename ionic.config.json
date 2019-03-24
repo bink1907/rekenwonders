@@ -1,5 +1,7 @@
 {
   "name": "Rekentuinen",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

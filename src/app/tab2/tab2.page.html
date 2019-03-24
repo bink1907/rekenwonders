@@ -1,9 +1,36 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Tab Two
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>
+            Tafels oefenen
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+
+
+    <ion-item>
+        <ion-label>Kies tafel</ion-label>
+        <ion-select value="1" okText="Oefen tafel" cancelText="Ga terug" (ionChange)="selectTafel()"
+                    [(ngModel)]="selectieModel.selectie">>
+            <ion-select-option *ngFor="let tafel of tafelsEasy" [value]="tafel">Tafel van {{tafel}}</ion-select-option>
+        </ion-select>
+    </ion-item>
+
+
+    <p *ngIf="selectieModel.selectie > 0">
+
+        <ion-card *ngFor="let nr of tafelStappen">
+            <ion-card-content>
+
+                    <h2>{{nr}} X {{selectieModel.selectie}} = {{nr * selectieModel.selectie}}</h2>
+
+            </ion-card-content>
+
+        </ion-card>
+
+
+    </p>
+
+
+</ion-content>

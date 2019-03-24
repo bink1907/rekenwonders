@@ -1,9 +1,41 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Tab Three
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>
+            Tafels toetsen
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+
+
+    <ion-item>
+        <ion-label>Kies tafel</ion-label>
+        <ion-select value="1" okText="Oefen tafel" cancelText="Ga terug" (ionChange)="selectTafel()"
+                    [(ngModel)]="selectieModel.selectie">>
+            <ion-select-option *ngFor="let tafel of tafelsEasy" [value]="tafel">Tafel van {{tafel}}</ion-select-option>
+        </ion-select>
+    </ion-item>
+
+
+    <ion-card *ngFor="let nr of tafelStappen">
+        <ion-card-content  *ngIf="selectieModel.selectie > 0">
+
+        <ion-item>
+            <ion-label position="stacked">{{nr}} X {{selectieModel.selectie}} = </ion-label>
+            <ion-input
+                       style="background-color: #d7d8da; font-size: 2em;"
+                       inputmode="tel"
+                       type="tel"
+                       value=""
+                       [(ngModel)]="tafelModel[selectieModel.selectie][nr]"
+                       (ionBlur)="checkAnswers(selectieModel.selectie, nr)"
+                       id="{{nr}}_{{selectieModel.selectie}}_answer"></ion-input>
+        </ion-item>
+        </ion-card-content>
+
+    </ion-card>
+
+    <ion-button *ngIf="selectieModel.selectie > 0" color="warning" class="ion-color ion-color-warning button button-solid ion-activatable ion-focusable hydrated activated center" expand="full">Nakijken</ion-button>
+
+</ion-content>
